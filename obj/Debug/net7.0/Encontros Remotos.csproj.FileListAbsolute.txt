@@ -1,0 +1,15 @@
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\bin\Debug\net7.0\Encontros Remotos.exe
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\bin\Debug\net7.0\Encontros Remotos.deps.json
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\bin\Debug\net7.0\Encontros Remotos.runtimeconfig.json
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\bin\Debug\net7.0\Encontros Remotos.dll
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\bin\Debug\net7.0\Encontros Remotos.pdb
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\Encontros Remotos.csproj.AssemblyReference.cache
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\Encontros Remotos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\Encontros Remotos.AssemblyInfoInputs.cache
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\Encontros Remotos.AssemblyInfo.cs
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\Encontros Remotos.csproj.CoreCompileInputs.cache
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\Encontros Remotos.dll
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\refint\Encontros Remotos.dll
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\Encontros Remotos.pdb
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\Encontros Remotos.genruntimeconfig.cache
+C:\Users\bluef\Desktop\Senai\Encontros Remotos\obj\Debug\net7.0\ref\Encontros Remotos.dll
