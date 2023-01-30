@@ -35,7 +35,19 @@ namespace Encontros_Remotos.Classes
 
         public bool validarDatadeNasc(string dataNasc)
         {
-            throw new NotImplementedException();
+            if(DateTime.TryParse(dataNasc, out DateTime dataConvertida)){
+
+            DateTime dataAtual = DateTime.Today;
+            double idade = (dataAtual - dataConvertida).TotalDays / 365;
+
+            // Console.WriteLine(idade);
+
+            if(idade >= 18){  
+                return true;
+            }
+
+        }
+            return false;
         }
     }
 }
