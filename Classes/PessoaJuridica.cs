@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Encontros_Remotos.Interfaces;
 
@@ -34,7 +35,31 @@ namespace Encontros_Remotos.Classes
 
         public bool validarCNPJ(string cnpj)
         {
-            throw new NotImplementedException();
+
+            bool validacaoCNPJ14 = Regex.IsMatch(cnpj, @"^(\d{14})$");
+
+            if(validacaoCNPJ14){
+
+                string substringCNPJ14 = cnpj.Substring(8, 4);
+
+                    if(substringCNPJ14 == "0001"){
+                        return true;
+                    }
+            }
+
+            bool validacaoCNPJ18 = Regex.IsMatch(cnpj, @"^(\d{2}.\d{3}.\d{3}/\d{4}-\d{2})$");
+
+            if(validacaoCNPJ18){            
+                string substringCNPJ18 = cnpj.Substring(11, 4);
+
+                    if(substringCNPJ18 == "0001"){
+                        return true;
+                    }
+
+            }
+            
+            return false;
+
         }
     }
 }

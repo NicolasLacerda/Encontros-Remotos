@@ -22,6 +22,7 @@ Bem-Vindo
 Nome: {pessoaF.nome}, 
 CPF: {pessoaF.cpf},
 Endereço: {pessoaF.endereco.rua},
+Data de Nascimento: {pessoaF.dataNasc}
 Idade Válida: {pessoaF.validarDatadeNasc("01/01/2000")}
 ");
 Console.WriteLine("De acordo com seu rendimento atual seu imposto será no valor de: R$" + resultado);
@@ -30,13 +31,14 @@ Console.WriteLine("=============================================================
 pessoaJuridica pessoaJ = new pessoaJuridica();
 
 pessoaJ.razaoSocial = "Google Brasil Internet LTDA";
-pessoaJ.cnpj = "06.990.590/0001-23";
+pessoaJ.cnpj = "06.991.991/0001-22";
 float? resultado2 = pessoaJ.calcularImposto(12000);
 
 Console.WriteLine(@$"
 Bem-Vindo
 Razão Social: {pessoaJ.razaoSocial}, 
 CNPJ: {pessoaJ.cnpj},
+CNPJ Válido: {pessoaJ.validarCNPJ(pessoaJ.cnpj)}
 ");
 Console.WriteLine("De acordo com seu rendimento atual seu imposto será no valor de: R$" + resultado2);
 Console.WriteLine("================================================================================");
