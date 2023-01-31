@@ -13,7 +13,9 @@ Este projeto pode ser usado como modelo para iniciar o desenvolvimento de um pro
 ## Tecnologias utilizadas
 
 Visual Studio Code
+/
 C#
+/
 DotNet 7.0
 
 ## Pré-requisitos de instalação
