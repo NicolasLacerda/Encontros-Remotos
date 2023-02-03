@@ -7,6 +7,6 @@ namespace Encontros_Remotos.Interfaces
 {
     public interface InterfacePessoaFisica
     {
-        bool validarDatadeNasc(string dataNasc);
+        bool ValidarDataNascimento(string dataNasc);
     }
 }

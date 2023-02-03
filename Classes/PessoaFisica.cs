@@ -10,7 +10,7 @@ namespace Encontros_Remotos.Classes
     {
         public string? cpf{get; set;}
 
-        public DateTime dataNasc{get; set;}
+        public string? dataNasc{get; set;}
 
         public override float? calcularImposto(float rendimento)
         {
@@ -32,22 +32,23 @@ namespace Encontros_Remotos.Classes
 
             throw new NotImplementedException();
         }
-
-        public bool validarDatadeNasc(string dataNasc)
-        {
-            if(DateTime.TryParse(dataNasc, out DateTime dataConvertida)){
-
-            DateTime dataAtual = DateTime.Today;
-            double idade = (dataAtual - dataConvertida).TotalDays / 365;
-
-            // Console.WriteLine(idade);
-
-            if(idade >= 18){  
-                return true;
-            }
-
+        public bool ValidarDataNascimento(string dataNasc)
+        {   
+            DateTime dataConvertida;
+            if(DateTime.TryParse(dataNasc, out dataConvertida)){
+                DateTime dataAtual = DateTime.Today;
+                double anos = (dataAtual - dataConvertida).TotalDays / 365;
+                if (anos >= 18){
+                    return true;
+                }
+                return false;  
+            } 
+            return false; 
         }
-            return false;
+
+        internal bool ValidarDataNascimento(object dataNasc)
+        {
+            throw new NotImplementedException();
         }
     }
 }

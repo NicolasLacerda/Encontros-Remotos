@@ -1,33 +1,27 @@
 ﻿using Encontros_Remotos.Classes;
 
-pessoaFisica pessoaF = new pessoaFisica();
-Endereco endPessoaF = new Endereco();
+Utils.BarraDeCarregamento("Carregando",300);
 
-pessoaF.nome = "Eduardo Costa Silva";
-pessoaF.cpf = "458.248.658-99";
-pessoaF.endereco = endPessoaF;
-endPessoaF.CEP = "25580-260";
-endPessoaF.rua = "Rua Cecília Vilas Boas";
-endPessoaF.numero = "30";
-endPessoaF.complemento = "Proximo a Igreja.";
-endPessoaF.endComercial = false;
+Console.Clear();
 
-float? resultado = pessoaF.calcularImposto(7000);
-
-pessoaJuridica pessoaJ = new pessoaJuridica();
-
-pessoaJ.razaoSocial = "Google Brasil Internet LTDA";
-pessoaJ.cnpj = "06.991.991/0001-22";
-float? resultado2 = pessoaJ.calcularImposto(12000);
-
-Utils.BarraDeCarregamento("Carregando");
-
+Thread.Sleep(500);
 Console.WriteLine(@$"
 ======================================================
-|                   !!!Bem-Vindo!!!                  | 
-|                 Consulta já o valor                |
-|                         de                         |  
-|                seu imposto de renda                |  
+|         Bem vindo ao sistema de cadastro de        |
+|            Pessoas Físicas e Jurídicas             |
+======================================================
+");
+
+Thread.Sleep(2500);
+Console.Clear();
+
+List<pessoaFisica> listaPf = new List<pessoaFisica>();
+List<pessoaJuridica> listaPj = new List<pessoaJuridica>();
+
+string? opcao;
+do{
+Console.Clear();
+Console.WriteLine(@$"
 ======================================================
 |          Digite o número da opção desejada         |
 ======================================================
@@ -35,52 +29,190 @@ Console.WriteLine(@$"
 |                  1- Pessoa Física                  |
 |                 2- Pessoa Jurídica                 |
 |                                                    |
+======================================================
+|                                                    |
 |                      0 - Sair                      |
 ======================================================
 ");
 
-string? opcaoSelecionada;
+opcao = Console.ReadLine();
 
-opcaoSelecionada = Console.ReadLine();
-
-Thread.Sleep(300);
-
-switch (opcaoSelecionada)
+switch (opcao)
 {
-    case "1":
+    case "1": //Pessoa Física
 
-        Console.WriteLine("================================================================================");
+        pessoaFisica metodoPf = new pessoaFisica();
+
+        string? opcaoPf;
+        do
+        {
+
+        Console.Clear();
         Console.WriteLine(@$"
-            Bem-Vindo
-            Nome: {pessoaF.nome}, 
-            CPF: {pessoaF.cpf},
-            Endereço: {pessoaF.endereco.rua},
-            Data de Nascimento: {pessoaF.dataNasc}
-            Idade Válida: {pessoaF.validarDatadeNasc("01/01/2000")}
-        ");
-        Console.WriteLine("De acordo com seu rendimento atual seu imposto será no valor de: R$" + resultado);
-        Console.WriteLine("================================================================================");
-    
-        break;
-    
+======================================================
+|          Digite o número da opção desejada         |
+======================================================
+|                                                    |
+|             1- Cadastrar Pessoa Física             |
+|             2- Mostrar Pessoas Físicas             |
+|                                                    |
+======================================================
+|                                                    |
+|             0- Voltar ao menu anterior             |
+======================================================
+");
+        opcaoPf = Console.ReadLine();
+            switch (opcaoPf) //Menu cadastrar pessoa fisica ou mostrar.
+                {
+                    case "1": //Cadastro de pessoa fisica
+                    Console.Clear();
+                    pessoaFisica novaPf = new pessoaFisica();
+                    Endereco novoEnd = new Endereco();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|    Bem-Vindo                    |
+|    Digite seu nome completo:    |
+===================================
+");
+                        novaPf.nome = Console.ReadLine();
+                        Console.Clear();
+
+                    bool dataValida;
+                    do
+                    {
+                        Console.WriteLine(@$"
+==================================================
+|         Digite sua data de nascimento:         |
+==================================================
+");
+                        string? dataNascimento = Console.ReadLine()!;
+
+                        dataValida = metodoPf.ValidarDataNascimento(dataNascimento);
+
+                        if (dataValida)
+                        {
+                            novaPf.dataNasc = dataNascimento;
+                        }
+                        else    
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.WriteLine($"Data digitada inválida, por favor digite uma data válida");
+                            Console.ResetColor();
+                        }  
+                    } while (dataValida == false);
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|         Digite seu CPF:         |
+===================================
+");
+                        novaPf.cpf = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|         Digite seu CEP:         |
+===================================
+");
+                        novoEnd.CEP = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|         Digite seu Rua:         |
+===================================
+");
+                        novoEnd.rua = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|        Digite seu Número:       |
+===================================
+");
+                        novoEnd.numero = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|     Digite seu Complemento:     |
+===================================
+");
+                        novoEnd.complemento = Console.ReadLine();
+
+                        Console.WriteLine(@$"
+================================================
+|    Este endereço é comercial? Sim ou Não:    |
+================================================
+");
+                        string endCom = Console.ReadLine()!.ToUpper();
+                        if(endCom == "Sim")
+                        {
+                            novoEnd.endComercial = true;
+                        }
+                        else{
+                            novoEnd.endComercial = false;
+                        }
+                        novaPf.endereco = novoEnd;
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|      Digite seu Rendimento:     |
+===================================
+");
+                        novaPf.rendimento = float.Parse(Console.ReadLine()!);
+                        listaPf.Add(novaPf);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(@$"
+================================================
+|        Cadastro realizado com sucesso        |
+================================================
+");
+                        Console.ResetColor();
+
+                    break;
+
     case "2":
-
-        Console.WriteLine("================================================================================");
-        Console.WriteLine(@$"
-            Bem-Vindo
-            Razão Social: {pessoaJ.razaoSocial}, 
-            CNPJ: {pessoaJ.cnpj},
-            CNPJ Válido: {pessoaJ.validarCNPJ(pessoaJ.cnpj)}
-        ");
-        Console.WriteLine("De acordo com seu rendimento atual seu imposto será no valor de: R$" + resultado2);
-        Console.WriteLine("================================================================================");
-
+        Console.Clear();
+        if (listaPf.Count > 0)
+        {
+            foreach (pessoaFisica cadaPessoa in listaPf)
+            {
+                 Console.Clear();
+                        Console.WriteLine(@$"
+                        Nome: {cadaPessoa.nome}
+                        Data de Nascimento: {cadaPessoa.dataNasc}
+                        CPF: {cadaPessoa.cpf}
+                        Cep: {cadaPessoa.endereco!.CEP}
+                        Rua: {cadaPessoa.endereco.rua}
+                        Numero: {cadaPessoa.endereco.numero}
+                        Complemento: {cadaPessoa.endereco.complemento}
+                        Endereço Comercial? {((bool)(cadaPessoa.endereco.endComercial)?"Sim":"Não")}
+                        Rendimento: {cadaPessoa.rendimento.ToString("C")}
+                        Taxa de Imposto a ser paga: R$ {metodoPf.calcularImposto(cadaPessoa.rendimento).ToString()},00
+                        ");
+                Console.WriteLine($"Aperte 'Enter'para continuar...");
+                Console.ReadLine();
+            }
+        }
+        else
+            {
+                Console.WriteLine($"Lista Vazia!!!");
+                Thread.Sleep(3000);
+            }
         break;
-
     case "0":
     
-        Console.WriteLine("Obrigado por utilizar nosso sistema");
-        Utils.BarraDeCarregamento("Finalizando");
+                Console.WriteLine(@$"
+=================================================
+|      Obrigado por Utilizar nosso sistema      |
+=================================================
+");
+        Utils.BarraDeCarregamento("Finalizando",300);
 
         break;
 
@@ -89,6 +221,173 @@ switch (opcaoSelecionada)
         Console.WriteLine("Opção inválida, digite um dos valores indicados");
         Console.WriteLine("para continuar,tecle Enter");
         Console.ReadLine();
-    
-        break; 
+        break;
+        }
+
+    } while (opcaoPf != "0");
+
+        break;
+        
+//-----------------------------------------------------------------------------------------------//
+
+    case "2": //Pessoa Juridica
+
+        pessoaJuridica metodoPj = new pessoaJuridica();
+
+        string? opcaoPj;
+        do
+        {
+
+        Console.Clear();
+        Console.WriteLine(@$"
+======================================================
+|          Digite o número da opção desejada         |
+======================================================
+|                                                    |
+|            1- Cadastrar Pessoa Jurídica            |
+|            2- Mostrar Pessoas Jurídicas            |
+|                                                    |
+======================================================
+|                                                    |
+|             0- Voltar ao menu anterior             |
+======================================================
+");
+        opcaoPj = Console.ReadLine();
+            switch (opcaoPj) //Menu cadastrar pessoa Juridica ou mostrar.
+                {
+                    case "1": //Cadastro de pessoa Juridica
+                    Console.Clear();
+                    pessoaJuridica novaPj = new pessoaJuridica();
+                    Endereco novoEnd = new Endereco();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|    Bem-Vindo                    |
+|    Digite sua Razão Social:     |
+===================================
+");
+                        novaPj.razaoSocial = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|         Digite seu CNPJ:         |
+===================================
+");
+                        novaPj.cnpj = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|         Digite seu CEP:         |
+===================================
+");
+                        novoEnd.CEP = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|         Digite seu Rua:         |
+===================================
+");
+                        novoEnd.rua = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|        Digite seu Número:       |
+===================================
+");
+                        novoEnd.numero = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|     Digite seu Complemento:     |
+===================================
+");
+                        novoEnd.complemento = Console.ReadLine();
+
+                        Console.WriteLine(@$"
+================================================
+|    Este endereço é comercial? Sim ou Não:    |
+================================================
+");
+                        string endCom = Console.ReadLine()!.ToUpper();
+                        if(endCom == "Sim")
+                        {
+                            novoEnd.endComercial = true;
+                        }
+                        else{
+                            novoEnd.endComercial = false;
+                        }
+                        novaPj.endereco = novoEnd;
+
+                        Console.Clear();
+                        Console.WriteLine(@$"
+===================================
+|      Digite seu Rendimento:     |
+===================================
+");
+                        novaPj.rendimento = float.Parse(Console.ReadLine()!);
+                        listaPj.Add(novaPj);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(@$"
+================================================
+|        Cadastro realizado com sucesso        |
+================================================
+");
+                        Console.ResetColor();
+
+                    break;
+
+    case "2":
+        Console.Clear();
+        if (listaPj.Count > 0)
+        {
+            foreach (pessoaJuridica cadaPessoaJ in listaPj)
+            {
+                 Console.Clear();
+                        Console.WriteLine(@$"
+                        Razão Social: {cadaPessoaJ.razaoSocial}
+                        CNPJ: {cadaPessoaJ.cnpj}
+                        Cep: {cadaPessoaJ.endereco!.CEP}
+                        Rua: {cadaPessoaJ.endereco.rua}
+                        Numero: {cadaPessoaJ.endereco.numero}
+                        Complemento: {cadaPessoaJ.endereco.complemento}
+                        Endereço Comercial? {((bool)(cadaPessoaJ.endereco.endComercial)?"Sim":"Não")}
+                        Rendimento: {cadaPessoaJ.rendimento.ToString("C")}
+                        Taxa de Imposto a ser paga: R$ {metodoPj.calcularImposto(cadaPessoaJ.rendimento).ToString()},00
+                        ");
+                Console.WriteLine($"Aperte 'Enter'para continuar...");
+                Console.ReadLine();
+            }
+        }
+        else
+            {
+                Console.WriteLine($"Lista Vazia!!!");
+                Thread.Sleep(3000);
+            }
+        break;
+    case "0":
+        Console.Clear();
+        Console.WriteLine(@$"
+=================================================
+|      Obrigado por Utilizar nosso sistema      |
+=================================================
+");
+        Utils.BarraDeCarregamento("Carregando",300);
+        break;
+    default:
+        Console.Clear();
+        Console.WriteLine($"Opção Inválida, por favor digite outra opção.");
+        Thread.Sleep(3000);
+        break;
+        }
+
+    } while (opcaoPj != "0");
+
+        break;
 }
+}while (opcao != "0");
