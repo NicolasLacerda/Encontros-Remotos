@@ -386,6 +386,7 @@ switch (opcao)
                         Rua: {cadaPessoaJ.rua}
                         Numero: {cadaPessoaJ.numero}
                         Complemento: {cadaPessoaJ.complemento}
+                        Endereço Comercial? {((bool)(cadaPessoaJ.endComercial)?"Sim":"Não")}
                         ");
                         
                 Console.WriteLine($"Aperte 'Enter'para continuar...");

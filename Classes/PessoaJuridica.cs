@@ -75,12 +75,12 @@ namespace Encontros_Remotos.Classes
         {
             VerificarPastaArquivo(caminho);
 
-            string[] pjString = {$"{pj.razaoSocial}, {pj.cnpj}, {pj.CEP}, {pj.rua}, {pj.numero}, {pj.complemento}"};
+            string[] pjString = {$"{pj.razaoSocial}, {pj.cnpj}, {pj.CEP}, {pj.rua}, {pj.numero}, {pj.complemento}, {pj.endComercial}"};
 
             File.AppendAllLines(caminho, pjString);
         }
 
-        public List<pessoaJuridica> Ler()
+        public List<pessoaJuridica> Ler() //Mostrar Cadastros
         {
             List<pessoaJuridica> listaPj = new List<pessoaJuridica>();
 
@@ -97,7 +97,8 @@ namespace Encontros_Remotos.Classes
                 cadaPj.CEP = atributos[2];
                 cadaPj.rua = atributos[3];
                 cadaPj.numero = atributos[4];
-                cadaPj.complemento = atributos[5];                                                
+                cadaPj.complemento = atributos[5];
+                atributos[6] = ((bool)(cadaPj.endComercial)?"Sim":"Não");
 
                 listaPj.Add(cadaPj);
             }
