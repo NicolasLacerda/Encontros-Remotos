@@ -9,19 +9,25 @@ namespace Encontros_Remotos.Classes
 {
     public class pessoaJuridica : Pessoa, InterfacePessoaJuridica
     {
-        public string? cnpj{get; set;}
+        public string? cnpjPj{get; set;}
 
-        public string? razaoSocial{get; set;}
+        public string? razaoSocialPj{get; set;}
 
-        public string? CEP { get; set; }
+        public string? cepPj { get; set; }
         
-        public string? rua { get; set; }
+        public string? ruaPj { get; set; }
 
-        public string? numero { get; set; }
+        public string? numeroPj { get; set; }
 
-        public string? complemento { get; set; }
+        public string? complementoPj { get; set; }
 
-        public bool endComercial { get; set; }
+        public bool endComercialPj { get; set; }
+
+        public string? impostoPj { get; set; }
+
+        public string? enderecoComercialPj { get; set; }
+
+        public string? rendimentoPj { get; set; }        
 
         public string caminho {get; private set;} = "Database/PessoaJuridica.csv";
 
@@ -71,11 +77,11 @@ namespace Encontros_Remotos.Classes
             
             return false;
         }
-        public void Inserir(pessoaJuridica pj)
+        public void Inserir(pessoaJuridica pj) //Fazer Cadastros
         {
             VerificarPastaArquivo(caminho);
 
-            string[] pjString = {$"{pj.razaoSocial}, {pj.cnpj}, {pj.CEP}, {pj.rua}, {pj.numero}, {pj.complemento}, {pj.endComercial}, {pj.rendimento}, {calcularImposto(pj.rendimento)}"};
+            string[] pjString = {$"{pj.razaoSocialPj}, {pj.cnpjPj}, {pj.cepPj}, {pj.ruaPj}, {pj.numeroPj}, {pj.complementoPj}, {pj.endComercialPj}, {pj.rendimento}, {calcularImposto(pj.rendimento)}"};
 
             File.AppendAllLines(caminho, pjString);
         }
@@ -91,14 +97,15 @@ namespace Encontros_Remotos.Classes
                 string[] atributos = cadaLinha.Split(",");
                 pessoaJuridica cadaPj = new pessoaJuridica();
             
-                cadaPj.razaoSocial = atributos[0];
-                cadaPj.cnpj = atributos[1];
-                cadaPj.CEP = atributos[2];
-                cadaPj.rua = atributos[3];
-                cadaPj.numero = atributos[4];
-                cadaPj.complemento = atributos[5];
-                atributos[6] = ((bool)(cadaPj.endComercial)?"Sim":"Não");
-                atributos[7] = (cadaPj.rendimento.ToString());
+                cadaPj.razaoSocialPj = atributos[0];
+                cadaPj.cnpjPj = atributos[1];
+                cadaPj.cepPj = atributos[2];
+                cadaPj.ruaPj = atributos[3];
+                cadaPj.numeroPj = atributos[4];
+                cadaPj.complementoPj = atributos[5];
+                cadaPj.enderecoComercialPj = atributos[6];
+                cadaPj.rendimentoPj = atributos[7];
+                cadaPj.impostoPj = atributos[8];
 
                 listaPj.Add(cadaPj);
             }

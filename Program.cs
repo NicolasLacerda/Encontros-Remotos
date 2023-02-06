@@ -293,7 +293,7 @@ switch (opcao)
 |    Digite sua Razão Social:     |
 ===================================
 ");
-                        novaPj.razaoSocial = Console.ReadLine();
+                        novaPj.razaoSocialPj = Console.ReadLine();
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -301,7 +301,7 @@ switch (opcao)
 |        Digite seu CNPJ:         |
 ===================================
 ");
-                        novaPj.cnpj = Console.ReadLine();
+                        novaPj.cnpjPj = Console.ReadLine();
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -309,7 +309,7 @@ switch (opcao)
 |         Digite seu CEP:         |
 ===================================
 ");
-                        novaPj.CEP = Console.ReadLine();
+                        novaPj.cepPj = Console.ReadLine();
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -317,7 +317,7 @@ switch (opcao)
 |         Digite seu Rua:         |
 ===================================
 ");
-                        novaPj.rua = Console.ReadLine();
+                        novaPj.ruaPj = Console.ReadLine();
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -325,7 +325,7 @@ switch (opcao)
 |        Digite seu Número:       |
 ===================================
 ");
-                        novaPj.numero = Console.ReadLine();
+                        novaPj.numeroPj = Console.ReadLine();
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -333,7 +333,7 @@ switch (opcao)
 |     Digite seu Complemento:     |
 ===================================
 ");
-                        novaPj.complemento = Console.ReadLine();
+                        novaPj.complementoPj = Console.ReadLine();
 
                         Console.WriteLine(@$"
 ================================================
@@ -343,12 +343,11 @@ switch (opcao)
                         string endCom = Console.ReadLine()!.ToUpper();
                         if(endCom == "Sim")
                         {
-                            novoEnd.endComercial = true;
+                            novaPj.endComercialPj = true;
                         }
                         else{
-                            novoEnd.endComercial = false;
+                            novaPj.endComercialPj = false;
                         }
-                        novaPj.endereco = novoEnd;
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -380,14 +379,15 @@ switch (opcao)
             {
                  Console.Clear();
                         Console.WriteLine(@$"
-                        Razão Social: {cadaPessoaJ.razaoSocial}
-                        CNPJ: {cadaPessoaJ.cnpj}
-                        Cep: {cadaPessoaJ.CEP}
-                        Rua: {cadaPessoaJ.rua}
-                        Numero: {cadaPessoaJ.numero}
-                        Complemento: {cadaPessoaJ.complemento}
-                        Endereço Comercial? {((bool)(cadaPessoaJ.endComercial)?"Sim":"Não")}
-                        Rendimento: {cadaPessoaJ.rendimento.ToString("C")}
+                        Razão Social: {cadaPessoaJ.razaoSocialPj}
+                        CNPJ: {cadaPessoaJ.cnpjPj}
+                        Cep: {cadaPessoaJ.cepPj}
+                        Rua: {cadaPessoaJ.ruaPj}
+                        Numero: {cadaPessoaJ.numeroPj}
+                        Complemento: {cadaPessoaJ.complementoPj}
+                        Endereço Comercial? {cadaPessoaJ.enderecoComercialPj}
+                        Rendimento: R${cadaPessoaJ.rendimentoPj},00
+                        Taxa de Imposto a ser paga: R${cadaPessoaJ.impostoPj},00
                         ");
                         
                 Console.WriteLine($"Aperte 'Enter'para continuar...");
