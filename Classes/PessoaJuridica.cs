@@ -13,6 +13,18 @@ namespace Encontros_Remotos.Classes
 
         public string? razaoSocial{get; set;}
 
+        public string? CEP { get; set; }
+        
+        public string? rua { get; set; }
+
+        public string? numero { get; set; }
+
+        public string? complemento { get; set; }
+
+        public bool endComercial { get; set; }
+
+        public string caminho {get; private set;} = "Database/PessoaJuridica.csv";
+
         public override float? calcularImposto(float rendimento)
         {
             if(rendimento <= 3000){
@@ -55,11 +67,42 @@ namespace Encontros_Remotos.Classes
                     if(substringCNPJ18 == "0001"){
                         return true;
                     }
-
             }
             
             return false;
+        }
+        public void Inserir(pessoaJuridica pj)
+        {
+            VerificarPastaArquivo(caminho);
 
+            string[] pjString = {$"{pj.razaoSocial}, {pj.cnpj}, {pj.CEP}, {pj.rua}, {pj.numero}, {pj.complemento}"};
+
+            File.AppendAllLines(caminho, pjString);
+        }
+
+        public List<pessoaJuridica> Ler()
+        {
+            List<pessoaJuridica> listaPj = new List<pessoaJuridica>();
+
+            string[] linhas = File.ReadAllLines(caminho);
+
+            foreach (string cadaLinha in linhas)
+            {
+                string[] atributos = cadaLinha.Split(",");
+                pessoaJuridica cadaPj = new pessoaJuridica();
+                
+            
+                cadaPj.razaoSocial = atributos[0];
+                cadaPj.cnpj = atributos[1];
+                cadaPj.CEP = atributos[2];
+                cadaPj.rua = atributos[3];
+                cadaPj.numero = atributos[4];
+                cadaPj.complemento = atributos[5];                                                
+
+                listaPj.Add(cadaPj);
+            }
+
+            return listaPj;
         }
     }
 }

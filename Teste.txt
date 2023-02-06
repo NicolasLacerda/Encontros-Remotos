@@ -1,0 +1,9 @@
+Nome: Teste Teste
+CPF: 258.258.258-50
+CEP: 25852-400
+Rua: Teste
+Número: 458
+Complemento: Teste
+Endereço é Comercial? Não
+Rendimento: R$ 7.000,00
+Imposto: R$ 350,00
