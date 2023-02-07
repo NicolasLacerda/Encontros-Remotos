@@ -27,7 +27,7 @@ namespace Encontros_Remotos.Classes
 
         public string? enderecoComercialPj { get; set; }
 
-        public string? rendimentoPj { get; set; }        
+        public string? rendimentoPj { get; set; }      
 
         public string caminho {get; private set;} = "Database/PessoaJuridica.csv";
 

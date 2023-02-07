@@ -335,13 +335,14 @@ switch (opcao)
 ");
                         novaPj.complementoPj = Console.ReadLine();
 
+                        Console.Clear();
                         Console.WriteLine(@$"
 ================================================
 |    Este endereço é comercial? Sim ou Não:    |
 ================================================
 ");
                         string endCom = Console.ReadLine()!.ToUpper();
-                        if(endCom == "Sim")
+                        if(endCom == "SIM")
                         {
                             novaPj.endComercialPj = true;
                         }
