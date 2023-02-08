@@ -15,8 +15,6 @@ Console.WriteLine(@$"
 Thread.Sleep(2500);
 Console.Clear();
 
-List<pessoaFisica> listaPf = new List<pessoaFisica>();
-
 string? opcao;
 do{
 Console.Clear();
@@ -116,7 +114,7 @@ switch (opcao)
 |         Digite seu CEP:         |
 ===================================
 ");
-                        novoEnd.CEP = Console.ReadLine();
+                        novaPf.cepPf = Console.ReadLine();
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -124,7 +122,7 @@ switch (opcao)
 |         Digite seu Rua:         |
 ===================================
 ");
-                        novoEnd.rua = Console.ReadLine();
+                        novaPf.ruaPf = Console.ReadLine();
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -132,7 +130,7 @@ switch (opcao)
 |        Digite seu Número:       |
 ===================================
 ");
-                        novoEnd.numero = Console.ReadLine();
+                        novaPf.numeroPf = Console.ReadLine();
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -140,22 +138,22 @@ switch (opcao)
 |     Digite seu Complemento:     |
 ===================================
 ");
-                        novoEnd.complemento = Console.ReadLine();
+                        novaPf.complementoPf = Console.ReadLine();
 
+                        Console.Clear();
                         Console.WriteLine(@$"
 ================================================
 |    Este endereço é comercial? Sim ou Não:    |
 ================================================
 ");
                         string endCom = Console.ReadLine()!.ToUpper();
-                        if(endCom == "Sim")
+                        if(endCom == "SIM")
                         {
-                            novoEnd.endComercial = true;
+                            novaPf.endComercialPf = true;
                         }
                         else{
-                            novoEnd.endComercial = false;
+                            novaPf.endComercialPf = false;
                         }
-                        novaPf.endereco = novoEnd;
 
                         Console.Clear();
                         Console.WriteLine(@$"
@@ -165,21 +163,7 @@ switch (opcao)
 ");
                         novaPf.rendimento = float.Parse(Console.ReadLine()!);
 
-                        // listaPf.Add(novaPf);
-
-                        using(StreamWriter sw = new StreamWriter($"{novaPf.nome}.txt"))
-                        {
-                            sw.WriteLine("Nome: " + novaPf.nome);
-                            sw.WriteLine("CPF: " + novaPf.cpf);
-                            sw.WriteLine("CEP: " + novaPf.endereco.CEP);
-                            sw.WriteLine("Rua: " + novaPf.endereco.rua);
-                            sw.WriteLine("Número: " + novaPf.endereco.numero);
-                            sw.WriteLine("Complemento: " + novaPf.endereco.complemento);
-                            sw.WriteLine("Endereço é Comercial? " + ((bool)(novaPf.endereco.endComercial)?"Sim":"Não"));
-                            sw.WriteLine("Rendimento: " + novaPf.rendimento.ToString("C"));
-                            sw.WriteLine("Imposto: R$ " + metodoPf.calcularImposto(novaPf.rendimento).ToString() + ",00");
-                        };
-
+                        Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(@$"
 ================================================
@@ -193,42 +177,35 @@ switch (opcao)
 
     case "2":
         Console.Clear();
-        // if (listaPf.Count > 0)
-        // {
-        //     foreach (pessoaFisica cadaPessoa in listaPf)
-        //     {
-        //          Console.Clear();
-        //                 Console.WriteLine(@$"
-        //                 Nome: {cadaPessoa.nome}
-        //                 Data de Nascimento: {cadaPessoa.dataNasc}
-        //                 CPF: {cadaPessoa.cpf}
-        //                 Cep: {cadaPessoa.endereco!.CEP}
-        //                 Rua: {cadaPessoa.endereco.rua}
-        //                 Numero: {cadaPessoa.endereco.numero}
-        //                 Complemento: {cadaPessoa.endereco.complemento}
-        //                 Endereço Comercial? {((bool)(cadaPessoa.endereco.endComercial)?"Sim":"Não")}
-        //                 Rendimento: {cadaPessoa.rendimento.ToString("C")}
-        //                 Taxa de Imposto a ser paga: R$ {metodoPf.calcularImposto(cadaPessoa.rendimento).ToString()},00
-        //                 ");
-        //         Console.WriteLine($"Aperte 'Enter'para continuar...");
-        //         Console.ReadLine();
-        //     }
-        // }
-        // else
-        //     {
-        //         Console.WriteLine($"Lista Vazia!!!");
-        //         Thread.Sleep(3000);
-        //     }
+        List<pessoaFisica> listaPf = metodoPf.Ler();
 
-        using (StreamReader sr = new StreamReader("Teste.txt"))
+        if (listaPf.Count > 0)
         {
-            string linha;
-            while((linha = sr.ReadLine()!) != null){
-                Console.WriteLine($"{linha}");
+            foreach (pessoaFisica cadaPessoaF in listaPf)
+            {
+                 Console.Clear();
+                        Console.WriteLine(@$"
+                        Nome: {cadaPessoaF.nome}
+                        Cpf: {cadaPessoaF.cpf}
+                        Data de Nascimento: {cadaPessoaF.dataNasc}
+                        Cep: {cadaPessoaF.cepPf}
+                        Rua: {cadaPessoaF.ruaPf}
+                        Numero: {cadaPessoaF.numeroPf}
+                        Complemento: {cadaPessoaF.complementoPf}
+                        Endereço Comercial? {cadaPessoaF.enderecoComercialPf}
+                        Rendimento: R${cadaPessoaF.rendimentoPf},00
+                        Taxa de Imposto a ser paga: R${cadaPessoaF.impostoPf},00
+                        ");
+                        
+                Console.WriteLine($"Aperte 'Enter'para continuar...");
+                Console.ReadLine();
             }
         }
-        Console.WriteLine($"Aperte 'Enter' para continuar...");
-        Console.ReadLine();
+        else
+            {
+                Console.WriteLine($"Lista Vazia!!!");
+                Thread.Sleep(3000);
+            }
 
         break;
     case "0":
@@ -284,7 +261,6 @@ switch (opcao)
                     case "1": //Cadastro de pessoa Juridica
                     Console.Clear();
                     pessoaJuridica novaPj = new pessoaJuridica();
-                    Endereco novoEnd = new Endereco();
 
                         Console.Clear();
                         Console.WriteLine(@$"
