@@ -29,7 +29,7 @@ namespace Encontros_Remotos.Classes
 
         public string? rendimentoPj { get; set; }      
 
-        public string caminhoPj {get; private set;} = "Database/PessoaJuridica.csv";
+        public string caminho { get; private set; } = "Database/PessoaJuridica.csv";
 
         public override float? calcularImposto(float rendimento)
         {
@@ -79,18 +79,21 @@ namespace Encontros_Remotos.Classes
         }
         public void Inserir(pessoaJuridica pj) //Fazer Cadastros
         {
-            VerificarPastaArquivoPj(caminhoPj);
+            VerificarPastaArquivo(caminho);
 
             string[] pjString = {$"{pj.razaoSocialPj}, {pj.cnpjPj}, {pj.cepPj}, {pj.ruaPj}, {pj.numeroPj}, {pj.complementoPj}, {pj.endComercialPj}, {pj.rendimento}, {calcularImposto(pj.rendimento)}"};
 
-            File.AppendAllLines(caminhoPj, pjString);
+            File.AppendAllLines(caminho, pjString);
         }
 
         public List<pessoaJuridica> Ler() //Mostrar Cadastros
         {
+
+            VerificarPastaArquivo(caminho);
+
             List<pessoaJuridica> listaPj = new List<pessoaJuridica>();
 
-            string[] linhas = File.ReadAllLines(caminhoPj);
+            string[] linhas = File.ReadAllLines(caminho);
 
             foreach (string cadaLinha in linhas)
             {

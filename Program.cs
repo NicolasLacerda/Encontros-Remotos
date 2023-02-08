@@ -172,6 +172,7 @@ switch (opcao)
 ");
                         Thread.Sleep(1500);
                         Console.ResetColor();
+                        metodoPf.Inserir(novaPf);
 
                     break;
 
@@ -209,8 +210,8 @@ switch (opcao)
 
         break;
     case "0":
-    
-                Console.WriteLine(@$"
+        Console.Clear();
+        Console.WriteLine(@$"
 =================================================
 |      Obrigado por Utilizar nosso sistema      |
 =================================================
@@ -334,15 +335,17 @@ switch (opcao)
 ");
                         novaPj.rendimento = float.Parse(Console.ReadLine()!);
 
-                        metodoPj.Inserir(novaPj);
-
+                        Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(@$"
 ================================================
 |        Cadastro realizado com sucesso        |
 ================================================
 ");
+
+                        Thread.Sleep(1500);
                         Console.ResetColor();
+                        metodoPj.Inserir(novaPj);
 
                     break;
 

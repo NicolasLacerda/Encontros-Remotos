@@ -30,7 +30,7 @@ namespace Encontros_Remotos.Classes
 
         public string? rendimentoPf { get; set; } 
 
-        public string caminhoPf {get; private set;} = "Database/PessoaFisica.csv";
+        public string caminho { get; private set; } = "Database/PessoaFisica.csv";
 
         public override float? calcularImposto(float rendimento)
         {
@@ -73,18 +73,21 @@ namespace Encontros_Remotos.Classes
 
         public void Inserir(pessoaFisica pf) //Fazer Cadastros
         {
-            VerificarPastaArquivoPf(caminhoPf);
+            VerificarPastaArquivo(caminho);
 
             string[] pfString = {$"{pf.nome}, {pf.cpf}, {pf.dataNasc}, {pf.cepPf}, {pf.ruaPf}, {pf.numeroPf}, {pf.complementoPf}, {pf.endComercialPf}, {pf.rendimento}, {calcularImposto(pf.rendimento)}"};
 
-            File.AppendAllLines(caminhoPf, pfString);
+            File.AppendAllLines(caminho, pfString);
         }
 
         public List<pessoaFisica> Ler() //Mostrar Cadastros
         {
+
+            VerificarPastaArquivo(caminho);
+
             List<pessoaFisica> listaPf = new List<pessoaFisica>();
 
-            string[] linhas = File.ReadAllLines(caminhoPf);
+            string[] linhas = File.ReadAllLines(caminho);
 
             foreach (string cadaLinha in linhas)
             {

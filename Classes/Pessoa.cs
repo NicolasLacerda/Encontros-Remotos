@@ -14,39 +14,18 @@ namespace Encontros_Remotos.Classes
 
         public abstract float? calcularImposto (float rendimento);
 
-        public void VerificarPastaArquivoPj(string caminhoPj)
+        public void VerificarPastaArquivo(string caminho)
         {
-            string pasta = caminhoPj.Split("/")[0];
+            string pasta = caminho.Split("/")[0];
 
             if(!Directory.Exists(pasta)){
                 Directory.CreateDirectory(pasta);
             }
 
-            if(!File.Exists(caminhoPj))
+            if(!File.Exists(caminho))
             {
-                using(File.Create(caminhoPj))
-                {
-
-                }
+                using (File.Create(caminho)){} 
             }
-        }
-
-        public void VerificarPastaArquivoPf(string caminhoPf)
-        {
-            string pasta = caminhoPf.Split("/")[0];
-
-            if(!Directory.Exists(pasta)){
-                Directory.CreateDirectory(pasta);
-            }
-
-            if(!File.Exists(caminhoPf))
-            {
-                using(File.Create(caminhoPf))
-                {
-
-                }
-            }
-
         }
     }
 }
