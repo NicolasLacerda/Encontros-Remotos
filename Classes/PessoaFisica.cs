@@ -30,7 +30,7 @@ namespace Encontros_Remotos.Classes
 
         public string? rendimentoPf { get; set; } 
 
-        public string caminhoPf {get; private set;} = "DatabasePf/PessoaFisica.csv";
+        public string caminhoPf {get; private set;} = "Database/PessoaFisica.csv";
 
         public override float? calcularImposto(float rendimento)
         {
